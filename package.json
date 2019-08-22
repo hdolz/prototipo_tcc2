@@ -1,0 +1,15 @@
+{
+  "name": "prototipotcc2",
+  "version": "1.0.0",
+  "description": "Prototipo de aplicação de TCC 2",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henrique Dolzane Mota",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0"
+  }
+}
