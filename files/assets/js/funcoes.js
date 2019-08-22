@@ -131,6 +131,27 @@ Nesse periodo foram desenvolvidas 6 funções básicas, dentre elas
  - função para colocar cursor na posição final do editor
 */
 
+/*Segundo dia de desenvolvimento
+8h - Base do frontend feita com base em template de dashboard em html Adminty
+Foi aptado um dashboard em html5 puro, com js e css, do repositorio no github de jovipac
+Vale lembrar que o projeto inicial do adminty é do ColorLib.
+Isso tudo em meio a um servidor node, com framework express, utilizando handlebars
+Integrado tbm os testes anteriores feitos com o codemirror
+    Problemas a serem resolvidos:
+    O codemirror, de modo geral, foi feito pra rodar no lado cliente, logo ha algumas dificuldades
+    em integra-lo com a API rest feita no express. Com o arquivo js estático que manipula o editor do 
+    code mirror, consegue-se pegar o valor (codigo) presente nele, porem fica dificil acessar esse dado
+    para repassar para a API devolver um tratamento na requisição, dai 2 coisas surgem:
+        - Acessar a renderização por meio de JavaScript puro, estatico
+        - Acessar a renderização por meio da API rest?
+        (resolver esse problema)
+    
+        Outra coisa é aprender a converter o arquivo de texto HTML em JSON e vice versa. isso vai permitir
+        o repasse para o editor na hora de renderizar, alem de permitir salvar o arquivo no banco de dados
+        de acordo com o usuário, alem de tbm servir para fazer a conversão dos blocos de códigos
+        correspondentes aos comandos de voz provindos do módulo de reconhemento de voz.
+*/
+
 function renderizar(){
     const codigo = editor.getValue();
     fs.writeFileSync('../../../codigo.html',codigo);
