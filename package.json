@@ -4,11 +4,12 @@
   "description": "Prototipo de aplicação de TCC 2",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Henrique Dolzane Mota",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0"
   }

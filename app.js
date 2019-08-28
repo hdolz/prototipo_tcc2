@@ -5,13 +5,15 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const script = require('./files/assets/js/testejs.js');
 const fs = require('fs');
+const dotenv = require('dotenv');
 /*=========================================================*/
 //Constantes
 const naoEncontrado = 404;
+dotenv.config();
 
 /** Instância do módulo express */
 const app = express();
-const porta = 5000;
+const porta = process.env.PORT || 5000;
 
 /** Express-handlebars middleware */
 app.engine('handlebars', exphbs());
