@@ -3,12 +3,8 @@ de páginas front-end de websites*/
 //Imports
 const express = require('express');
 const exphbs = require('express-handlebars');
-const script = require('./files/assets/js/testejs.js');
-const fs = require('fs');
 const dotenv = require('dotenv');
-/*=========================================================*/
-//Constantes
-const naoEncontrado = 404;
+
 dotenv.config();
 
 /** Instância do módulo express */
@@ -22,20 +18,9 @@ app.set('view engine', 'handlebars');
 /** Arquivos staticos */
 app.use(express.static('files'));
 
-/** Em caso de rotas não existentes */
-
-// app.use((err, req, res, next) => {
-//     if (err.status === naoEncontrado) {
-//         return res.status(404).render('notfound',{
-//             estilo: 'css/style.css'
-//         });
-//     }
-//     next();
-// });
-
 /* Endpoints */
 app.get('/', (req, res) => {
-    res.render('index',{
+    res.render('index', {
         icon: 'assets/images/favicon.ico',
         googleFont: 'https://fonts.googleapis.com/css?family=Open+Sans:400,600',
         bootstrap: 'bower_components/bootstrap/css/bootstrap.min.css',
@@ -46,7 +31,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/render',(req,res)=>{
+app.get('/render', (req, res) => {
     res.redirect('/');
 });
 
