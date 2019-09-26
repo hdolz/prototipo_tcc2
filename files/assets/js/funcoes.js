@@ -10,19 +10,19 @@ let editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
 
 editor.setValue("<h1> Este é um H1 </h1>\nsasadasdsa\nsadsadsads\nadsasadsada\nsdsad\nasdadas\ndsadasdasdasdasdsadasdsad");
 
-editor.setValue( 
-"<!DOCTYPE html>"+
-"\n<html lang='pt-br'>"+
-"\n<head>"+
-"\n   <meta charset='UTF-8'>"+
-"\n   <meta name='viewport' content='width=device-width, initial-scale=1.0'>"+
-"\n   <meta http-equiv='X-UA-Compatible' content='ie=edge'>"+
-"\n   <title> Index </title>"+
-"\n</head>"+
-"\n<body>"+
-"\n    "+
-"\n</body>"+
-"\n</html>");
+editor.setValue(
+    "<!DOCTYPE html>" +
+    "\n<html lang='pt-br'>" +
+    "\n<head>" +
+    "\n   <meta charset='UTF-8'>" +
+    "\n   <meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+    "\n   <meta http-equiv='X-UA-Compatible' content='ie=edge'>" +
+    "\n   <title> Index </title>" +
+    "\n</head>" +
+    "\n<body>" +
+    "\n    " +
+    "\n</body>" +
+    "\n</html>");
 
 editor.focus();
 editor.setCursor({ line: 9, ch: 4 });
@@ -110,7 +110,6 @@ function inseriu() {
 
 //define cursor na posição final do editor
 function goToFinal() {
-    let cursor = editor.getCursor();
     let pos = {
         line: editor.lineCount(),
         ch: 0
@@ -152,8 +151,62 @@ Integrado tbm os testes anteriores feitos com o codemirror
         correspondentes aos comandos de voz provindos do módulo de reconhemento de voz.
 */
 
-function renderizar(){
-    const codigo = editor.getValue();
-    fs.writeFileSync('../../../codigo.html',codigo);
-    console.log(codigo);
+let iframe = document.getElementById('render');
+let iframedoc = iframe.contentDocument || iframe.contentWindow.document;
+
+function getCodigo(dados,callback){
+    return callback(dados);
 }
+
+async function renderizar() {
+    const codigo = await getCodigo(editor.getValue(),(codigo)=>{
+        return codigo;
+    });
+    console.log('agr vai entrar na que envia');
+    await (async (codigo) => {
+        const url = '/renderizar';
+        const config = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ dados: codigo })
+        };
+        const rawResponse = await fetch(url, config);
+        iframedoc.body.innerHTML = await rawResponse.text();
+    })(codigo).catch((err)=>{
+        console.log(err)
+    })
+}
+
+//funções testes para renderização
+
+// document.getElementById('request').addEventListener('click', () => {
+//     const url = 'http://127.0.0.1:5000/teste';
+//     (async () => {
+//         const rawResponse = await fetch(url);
+//         iframedoc.body.innerHTML = await rawResponse.text();
+//     })()
+// });
+
+// function getData(callback) {
+//     let dados = document.getElementById('entrada').value;
+//     callback(dados);
+// }
+
+
+//limitações
+// - Melhorar a forma de recuperar o valor presente no editor de codigo
+// -> editor.getValue() não é eficiente para processos assincrono
+//resolvido
+
+/*
+terceiro dia - 5h
+testes para funcionalidade de enviar requisições postes do front
+com os dados presentes no editor de codigo
+para retornar do servidor e ser renderizado no iframe
+
+quarto dia - 4h
+Função base para renderização de resultado
+
+*/

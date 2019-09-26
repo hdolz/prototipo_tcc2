@@ -4,6 +4,7 @@ de páginas front-end de websites*/
 const express = require('express');
 const exphbs = require('express-handlebars');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser')
 
 dotenv.config();
 
@@ -18,6 +19,11 @@ app.set('view engine', 'handlebars');
 /** Arquivos staticos */
 app.use(express.static('files'));
 
+//body-parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
 /* Endpoints */
 app.get('/', (req, res) => {
     res.render('index', {
@@ -31,8 +37,15 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/render', (req, res) => {
-    res.redirect('/');
+app.post('/renderizar', (req, res) => {
+    res.append('Access-Control-Allow-Origin', ['*']);
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    console.log(req.body.dados);
+    res.send(req.body.dados);
+});
+
+app.get('/teste', (req, res) => {
+    res.send('ola');
 });
 
 /* Rodar servidor */

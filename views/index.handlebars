@@ -129,7 +129,7 @@
                         <div class="pcoded-navigatio-lavel">Renderização</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="">
-                                <a href="/">
+                                <a href="javascript:renderizar()">
                                     <span class="pcoded-micon"><i class="feather icon-monitor"></i></span>
                                     <span class="pcoded-mtext">Renderizar código</span>
                                 </a>
@@ -168,13 +168,8 @@
                                             <div class="card bg-c-green update-card">
                                                 <div class="card-block">
                                                     <div class="row align-items-end">
-                                                        <div class="col-8">
-                                                            <h4 class="text-white">Resultado</h4>
-                                                            <h6 class="text-white m-b-0">Area de render</h6>
-                                                            <h6 class="text-white m-b-0">{{content}}</h6>
-                                                        </div>
-                                                        <div class="col-4 text-right">
-                                                            <canvas id="update-chart-2" height="50"></canvas>
+                                                        <div class="col-12" style="margin:0px;padding:0px;overflow:hidden">
+                                                            <iframe id="render" src="" frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
                                                         </div>
                                                     </div>
                                                 </div>
