@@ -1,54 +1,38 @@
-/*Protótipo de aplição referente ao TCC 2 - Ferramenta WEB para desenvolvimento
-de páginas front-end de websites*/
-//Imports
 const express = require('express');
 const exphbs = require('express-handlebars');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser')
+const json2html = require('html2json').json2html;
+const arq_caminhos = require('./model/util/arquivo_caminhos');
 
 dotenv.config();
 
-/** Instância do módulo express */
 const app = express();
-const porta = process.env.PORT || 5000;
 
-/** Express-handlebars middleware */
+//express-handlebars middleware
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-
-/** Arquivos staticos */
-app.use(express.static('files'));
 
 //body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+/** Servir arquivos staticos */
+app.use(express.static('public'));
 
-/* Endpoints */
+//porta do servidor
+const port = process.env.PORT || 3000;
+
 app.get('/', (req, res) => {
-    res.render('index', {
-        icon: 'assets/images/favicon.ico',
-        googleFont: 'https://fonts.googleapis.com/css?family=Open+Sans:400,600',
-        bootstrap: 'bower_components/bootstrap/css/bootstrap.min.css',
-        feather: 'assets/icon/feather/css/feather.css',
-        style: 'assets/css/style.css',
-        customScrollBar: 'assets/css/jquery.mCustomScrollbar.css',
-        logo: 'assets/images/logo.png'
-    });
+    res.render('index', arq_caminhos.caminhos)
 });
 
 app.post('/renderizar', (req, res) => {
     res.append('Access-Control-Allow-Origin', ['*']);
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    console.log(req.body.dados);
     res.send(req.body.dados);
 });
 
-app.get('/teste', (req, res) => {
-    res.send('ola');
-});
-
-/* Rodar servidor */
-app.listen(porta, () => {
-    console.log(` > Servidor ouvindo na porta ${porta}`);
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`)
 });

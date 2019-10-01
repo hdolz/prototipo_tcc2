@@ -1,16 +1,18 @@
 {
-  "name": "prototipotcc2",
-  "version": "1.0.0",
-  "description": "Prototipo de aplicação de TCC 2",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
-  "author": "Henrique Dolzane Mota",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^8.1.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^3.1.0"
-  }
+    "name": "novofront",
+    "version": "1.0.0",
+    "description": "prototipo de novo front do tcc",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "author": "hdolz",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.1.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^3.1.0",
+        "html2json": "^1.0.2"
+    }
 }
